@@ -41,11 +41,20 @@ namespace PeopleSearchAPI.Controllers
                 return query;
             }
         }
-        // GET api/People/{name}
+        // GET api/SearchByName/{name}
         [HttpGet("{name}")]
-        public string SearchByName(string name)
+        public List<Person> SearchByName(string name)
         {
-            return "value";
+            using (var db = new PeopleContext())
+            {
+                // For testing - see if database will get created
+                var query = from p in db.People
+                            where p.FirstName.Contains(name) || p.LastName.Contains(name)
+                            orderby p.LastName
+                            select p;
+
+                return query.ToList();
+            }
         }
 
     }

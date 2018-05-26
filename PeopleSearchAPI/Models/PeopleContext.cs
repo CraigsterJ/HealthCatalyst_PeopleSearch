@@ -19,6 +19,7 @@ namespace PeopleSearchAPI.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<Person>().ToTable("Person");
         }
     }
 }

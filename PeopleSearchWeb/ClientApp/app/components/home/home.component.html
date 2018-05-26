@@ -1,16 +1,60 @@
-<h1>Hello, world!</h1>
-<p>Welcome to your new single-page application, built with:</p>
-<ul>
-    <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-    <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
-    <li><a href='https://webpack.github.io/'>Webpack</a> for building and bundling client-side resources</li>
-    <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-</ul>
-<p>To help you get started, we've also set up:</p>
-<ul>
-    <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-    <li><strong>Server-side prerendering</strong>. For faster initial loading and improved SEO, your Angular app is prerendered on the server. The resulting HTML is then transferred to the browser where a client-side copy of the app takes over.</li>
-    <li><strong>Webpack dev middleware</strong>. In development mode, there's no need to run the <code>webpack</code> build tool. Your client-side resources are dynamically built on demand. Updates are available as soon as you modify any file.</li>
-    <li><strong>Hot module replacement</strong>. In development mode, you don't even need to reload the page after making most changes. Within seconds of saving changes to files, your Angular app will be rebuilt and a new instance injected into the page.</li>
-    <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and the <code>webpack</code> build tool produces minified static CSS and JavaScript files.</li>
-</ul>
+<h2>Select your search criteria:</h2>
+<hr />
+<table cellpadding="3" cellspacing="3" class="table-responsive">
+    <tr style="padding-top: 5px;">
+        <td width="20">&nbsp;</td>
+        <td width="50" class="control-label">Name:</td>
+        <td width="200"><input class="form-control" name="name" #firstName [(ngModel)]="search.name"></td>
+        <td width="10px">&nbsp;</td>
+        <td width="200">
+            <button class="btn btn-primary pull-right" style="width:200px;" (click)="searchPeople()">Search</button>
+        </td>
+    </tr>
+    <tr style="padding-top: 5px;">
+        <td colspan="3">&nbsp;</td>
+    </tr>
+</table>
+<div *ngIf="isSearching" class="loading-spinner"><img src="../../images/loader.gif" width="48" height="48" /></div>
+<div *ngIf="people">
+    <hr />
+    <div>
+        <div class="pull-left" style="padding: 5px 5px 5px 5px; margin-left: 1%">
+            <span class="">Search Results</span>
+        </div>
+    </div>
+    <div class="">
+        <table cellspacing="5" cellpadding="5" class='table' style="border:1px solid black; padding: 5px 5px 5px 5px;">
+            <thead style="">
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                    <th>Interests</th>
+                    <th>Age</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ppl of people">
+                    <td>{{ ppl.id }}</td>
+                    <td>{{ ppl.firstName }}</td>
+                    <td>{{ ppl.lastName }}</td>
+                    <td>{{ ppl.address }}</td>
+                    <td>{{ ppl.city }}</td>
+                    <td>{{ ppl.state }}</td>
+                    <td>{{ ppl.zip }}</td>
+                    <td>{{ ppl.interests }}</td>
+                    <td>{{ ppl.age }}</td>
+                    <td><img [src]="ppl.profileImage" height="100" width="100" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="people.length == 0" style="padding-bottom: 20px;">
+            <b>Sorry no results matched your search</b>
+        </div>
+    </div>
+</div>
