@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using PeopleSearchAPI.Models;
 
 namespace PeopleSearchAPI
@@ -15,7 +17,9 @@ namespace PeopleSearchAPI
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            var host = BuildWebHost(args);
+            host.Run();
+
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

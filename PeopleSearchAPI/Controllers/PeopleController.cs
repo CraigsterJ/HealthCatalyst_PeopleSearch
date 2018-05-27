@@ -10,6 +10,12 @@ namespace PeopleSearchAPI.Controllers
     [Route("api/[controller]")]
     public class PeopleController : Controller
     {
+        private readonly PeopleContext _dbContext;
+
+        public PeopleController(PeopleContext context)
+        {
+            _dbContext = context;
+        }
         /// <summary>
         /// Get testing api (only for testing)
         /// </summary>
@@ -27,34 +33,21 @@ namespace PeopleSearchAPI.Controllers
         [HttpGet]
         public IEnumerable<Person> GetAllPeople()
         {
-            //TODO - HOOK this up to real call from angular
-            // - DOES the database get created? Otherwise how do I set it up?
-            // - SET UP MIGRATION TO SEED THE DATA!
-            // - UNIT TEST the search and maybe something else just for a sample
-            using (var db = new PeopleContext())
-            {
-                // For testing - see if database will get created
-                var query = from p in db.People
-                            orderby p.LastName
-                            select p;
+            var query = from p in _dbContext.People
+                        orderby p.LastName
+                        select p;
 
-                return query;
-            }
+            return query;
         }
         // GET api/SearchByName/{name}
         [HttpGet("{name}")]
         public List<Person> SearchByName(string name)
         {
-            using (var db = new PeopleContext())
-            {
-                // For testing - see if database will get created
-                var query = from p in db.People
-                            where p.FirstName.Contains(name) || p.LastName.Contains(name)
-                            orderby p.LastName
-                            select p;
-
-                return query.ToList();
-            }
+            var query = from p in _dbContext.People
+                        where p.FirstName.Contains(name) || p.LastName.Contains(name)
+                        orderby p.LastName
+                        select p;
+            return query.ToList();
         }
 
     }
