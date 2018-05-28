@@ -21,8 +21,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\barr.JPG" />
+    <Content Remove="wwwroot\images\cook.jpg" />
+    <Content Remove="wwwroot\images\cousins.jpg" />
+    <Content Remove="wwwroot\images\diggs.jpg" />
+    <Content Remove="wwwroot\images\johnson.jpg" />
+    <Content Remove="wwwroot\images\loader.gif" />
+    <Content Remove="wwwroot\images\thelen.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\app\images\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\barr.JPG" />
+    <None Include="wwwroot\images\cook.jpg" />
+    <None Include="wwwroot\images\cousins.jpg" />
+    <None Include="wwwroot\images\diggs.jpg" />
+    <None Include="wwwroot\images\johnson.jpg" />
+    <None Include="wwwroot\images\loader.gif" />
+    <None Include="wwwroot\images\thelen.jpg" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
