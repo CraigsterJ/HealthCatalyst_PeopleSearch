@@ -26,7 +26,13 @@ namespace PeopleSearchAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=HealthCatalyst;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("cors-policy",
+                    builder => builder.WithOrigins("http://localhost:64833"));
+            });
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=HealthCatalystPeople;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<PeopleContext>(options => options.UseSqlServer(connection));
         }
 
@@ -37,8 +43,8 @@ namespace PeopleSearchAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseMvc();
+            app.UseCors("cors-policy");
         }
     }
 }

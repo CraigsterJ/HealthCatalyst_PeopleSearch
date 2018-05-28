@@ -18,9 +18,9 @@ export class HomeComponent {
         if (this.people != null) {
             this.people.length = 0;
         }
-        var parms =     {
+        var parms =  {
             name: this.search.name
-        };
+        }
         var apiUrl = "http://localhost:49196/api/People/SearchByName";
         this.http.get(apiUrl, { search: parms }).subscribe(result => {
             this.people = result.json() as Person[];
@@ -30,6 +30,9 @@ export class HomeComponent {
                 console.error(error);
                 this.isSearching = false;
             });
+    }
+    public getImageFullFilePath(image: string) {
+        return "/images/" + image;
     }
 }
 interface PeopleSearch {
