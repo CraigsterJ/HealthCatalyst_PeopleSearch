@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HealthCatalyst_PeopleSearchAngular4
+namespace PeopleSearch
 {
     public class Startup
     {

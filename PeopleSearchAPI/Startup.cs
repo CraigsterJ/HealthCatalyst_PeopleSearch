@@ -37,7 +37,7 @@ namespace PeopleSearchAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, PeopleContext context)
         {
             if (env.IsDevelopment())
             {
@@ -45,6 +45,9 @@ namespace PeopleSearchAPI
             }
             app.UseMvc();
             app.UseCors("cors-policy");
+         
+            //Make sure the database gets created on first time use (for Health Catalyst folks)
+            context.Database.EnsureCreated();
         }
     }
 }

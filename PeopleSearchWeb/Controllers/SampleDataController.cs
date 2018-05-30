@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HealthCatalyst_PeopleSearchAngular4.Controllers
+namespace PeopleSearch.Controllers
 {
     [Route("api/[controller]")]
     public class SampleDataController : Controller
